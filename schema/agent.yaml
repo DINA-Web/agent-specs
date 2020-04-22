@@ -14,7 +14,7 @@ info:
 paths:
   /v1/agent:
     get:
-      summary: get agents
+      summary: Get agents
       operationId: getAgents
       description: By passing in query string, user can get available agents authorised
       parameters:
@@ -52,7 +52,7 @@ paths:
         '404':
           description: agent not found
     post:
-      summary: adds an agent
+      summary: Add agent
       operationId: addAgent
       description: Adds an agent
       responses:
@@ -91,7 +91,7 @@ paths:
         "500":
           description: Not a valid uuid          
     patch:
-      summary: update an agent
+      summary: Update agent
       operationId: updateAgent
       description: update an agent
       parameters:
@@ -114,7 +114,7 @@ paths:
               $ref: '#/components/schemas/Agent'
         description: agent to add
     delete:
-      summary: delete an agent
+      summary: Delete agent
       operationId: deleteAgent
       description: delete an agent
       parameters:
