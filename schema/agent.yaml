@@ -49,8 +49,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Agent'
-        '400':
-          description: bad input parameter
         '404':
           description: agent not found
     post:
@@ -60,10 +58,8 @@ paths:
       responses:
         '201':
           description: agent created
-        '400':
-          description: 'invalid input, object invalid'
-        '409':
-          description: An agent already exists
+        '422':
+          description: Data integrity violation          
       requestBody:
         content:
           application/json:
@@ -90,10 +86,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Agent'
-        "400":
-          description: Invalid ID supplied
         "404":
           description: Agent not found
+        "500":
+          description: Not a valid uuid          
     patch:
       summary: update an agent
       operationId: updateAgent
@@ -132,10 +128,10 @@ paths:
       responses:
         '200':
           description: agent marked as deleted
-        '400':
-          description: invalid ID supplied
         '404':
           description: agent not found
+        "500":
+          description: Not a valid uuid        
 
 components:
   schemas:
