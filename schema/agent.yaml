@@ -1,0 +1,166 @@
+openapi: 3.0.0
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/AAFC/test/1.0.0
+info:
+  description: Agent schema
+  version: "1.0.0"
+  title: Agent schema
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /v1/agent:
+    get:
+      summary: get agents
+      operationId: getAgents
+      description: By passing in query string, user can get available agents authorised
+      parameters:
+        - in: query
+          name: filter[rsql]
+          description: pass an optional search string for looking up the agents
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: optional sort string, can have sort order such as descending denoted by "-"
+          schema:
+            type: string
+        - in: query
+          name: page[offset]
+          description: number of records to skip when paging
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: page[limit]
+          description: maximum number of records to return when paging
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: agents satifying the query restrictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        '404':
+          description: agent not found
+    post:
+      summary: adds an agent
+      operationId: addAgent
+      description: Adds an agent
+      responses:
+        '201':
+          description: agent created
+        '422':
+          description: Data integrity violation          
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        description: Agent to add
+  /v1/agent/{Id}:
+    get:
+      summary: Find agent by ID
+      description: Returns a single agent
+      operationId: getAgentById
+      parameters:
+        - name: Id
+          in: path
+          description: ID of agent to return
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        "404":
+          description: Agent not found
+        "500":
+          description: Not a valid uuid          
+    patch:
+      summary: update an agent
+      operationId: updateAgent
+      description: update an agent
+      parameters:
+        - name: Id
+          in: path
+          description: agent id to patch
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: agent updated
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        description: agent to add
+    delete:
+      summary: delete an agent
+      operationId: deleteAgent
+      description: delete an agent
+      parameters:
+        - name: Id
+          in: path
+          description: agent id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        '200':
+          description: agent marked as deleted
+        '404':
+          description: agent not found
+        "500":
+          description: Not a valid uuid        
+
+components:
+  schemas:
+    Agent:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+            - type
+            - attributes
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: d290f1ee-6c54-4b01-90e6-d701748f0851
+            type:
+              type: string
+            attributes:
+              type: object
+              required:
+                - displayName
+                - email
+              properties:
+                displayName:
+                  type: string
+                  description: display name of the agent
+                email:
+                  description: agent email          
