@@ -25,7 +25,7 @@ paths:
             type: string
         - in: query
           name: sort
-          description: optional sort string, can have sort order such as descending denoted by "-"
+          description: optional sort order string, such as descending, denoted by "-"
           schema:
             type: string
         - in: query
@@ -163,4 +163,5 @@ components:
                   type: string
                   description: display name of the agent
                 email:
-                  description: agent email          
+                  description: agent email
+                  type: string          
