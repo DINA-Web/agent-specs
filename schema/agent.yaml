@@ -87,11 +87,11 @@ paths:
               schema:
                 type: array
                 items: 
-                  "$ref": "#/components/schemas/Agent"                
+                  "$ref": "#/components/schemas/Agent"
+        "400":
+          description: Not a valid uuid                
         "404":
-          description: Agent not found
-        "500":
-          description: Not a valid uuid          
+          description: Agent not found          
     patch:
       summary: Update agent
       operationId: updateAgent
@@ -130,11 +130,10 @@ paths:
       responses:
         '200':
           description: agent marked as deleted
+        "400":
+          description: Not a valid uuid          
         '404':
-          description: agent not found
-        "500":
-          description: Not a valid uuid        
-
+          description: agent not found       
 components:
   schemas:
     Agent:
