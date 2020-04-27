@@ -25,7 +25,7 @@ paths:
             type: string
         - in: query
           name: sort
-          description: optional sort string, can have sort order such as descending denoted by "-"
+          description: optional sort order string, such as descending, denoted by "-"
           schema:
             type: string
         - in: query
@@ -85,7 +85,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent'
+                type: array
+                items: 
+                  "$ref": "#/components/schemas/Agent"                
         "404":
           description: Agent not found
         "500":
@@ -152,7 +154,7 @@ components:
               format: uuid
               example: d290f1ee-6c54-4b01-90e6-d701748f0851
             type:
-              type: string
+              enum: [agent]
             attributes:
               type: object
               required:
@@ -163,4 +165,5 @@ components:
                   type: string
                   description: display name of the agent
                 email:
-                  description: agent email          
+                  description: agent email
+                  type: string          
