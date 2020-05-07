@@ -66,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Agent'
+              $ref: '#/components/schemas/NewAgent'
         description: Agent to add
   /v1/agent/{Id}:
     get:
@@ -137,6 +137,16 @@ paths:
 components:
   schemas:
     Agent:
+      allOf:
+        - $ref: '#/components/schemas/NewAgent'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuid  
+    NewAgent:
       type: object
       required:
         - data
@@ -144,7 +154,6 @@ components:
         data:
           type: object
           required:
-            - id
             - type
             - attributes
           properties:
