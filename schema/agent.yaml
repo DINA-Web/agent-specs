@@ -48,7 +48,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Agent'
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Agent'                
         '404':
           description: agent not found
     post:
@@ -64,7 +66,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Agent'
+              $ref: '#/components/schemas/NewAgent'
         description: Agent to add
   /v1/agent/{Id}:
     get:
@@ -80,17 +82,15 @@ paths:
             type: string
             format: uuid            
       responses:
-        "200":
+        '200':
           description: successful operation
           content:
             application/json:
-              schema:
-                type: array
-                items: 
-                  "$ref": "#/components/schemas/Agent"
-        "400":
+              schema:          
+                $ref: '#/components/schemas/Agent'
+        '400':
           description: Not a valid uuid                
-        "404":
+        '404':
           description: Agent not found          
     patch:
       summary: Update agent
@@ -108,7 +108,7 @@ paths:
         '200':
           description: agent updated
         '400':
-          description: 'invalid input, object invalid'
+          description: invalid input, object invalid
       requestBody:
         content:
           application/json:
@@ -130,13 +130,23 @@ paths:
       responses:
         '200':
           description: agent marked as deleted
-        "400":
+        '400':
           description: Not a valid uuid          
         '404':
           description: agent not found       
 components:
   schemas:
     Agent:
+      allOf:
+        - $ref: '#/components/schemas/NewAgent'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuid  
+    NewAgent:
       type: object
       required:
         - data
@@ -144,7 +154,6 @@ components:
         data:
           type: object
           required:
-            - id
             - type
             - attributes
           properties:
