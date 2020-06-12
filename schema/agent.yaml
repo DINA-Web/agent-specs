@@ -137,15 +137,22 @@ paths:
 components:
   schemas:
     Agent:
-      allOf:
-        - $ref: '#/components/schemas/NewAgent'
-        - type: object
-          required:
-            - id
-          properties:
-            id:
-              type: string
-              format: uuid  
+     type: object
+     required:
+       - data
+     properties:
+       data:
+         type: object
+         required:
+           - id
+         properties:
+           id:
+             type: string
+             format: uuid
+             description: Identifier of the object as UUID
+         allOf:
+          - $ref: '#/components/schemas/CommonAgent'
+
     NewAgent:
       type: object
       required:
@@ -153,25 +160,30 @@ components:
       properties:
         data:
           type: object
+          allOf:
+            - $ref: '#/components/schemas/CommonAgent'
+
+    CommonAgent:
+      type: object
+      required:
+        - type
+        - attributes       
+      properties:            
+        type:
+          enum: [agent]
+        attributes:
+          type: object
           required:
-            - type
-            - attributes
+            - displayName
+            - email
           properties:
-            id:
+            displayName:
               type: string
-              format: uuid
-              example: d290f1ee-6c54-4b01-90e6-d701748f0851
-            type:
-              enum: [agent]
-            attributes:
-              type: object
-              required:
-                - displayName
-                - email
-              properties:
-                displayName:
-                  type: string
-                  description: display name of the agent
-                email:
-                  description: agent email
-                  type: string          
+              description: display name of the agent
+            email:
+              description: agent email
+              type: string          
+
+    
+    
+  
