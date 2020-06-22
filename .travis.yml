@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '10'
 
-script: npx redoc-cli bundle schema/agent.yaml -o redoc/index.html
+script: npx redoc-cli bundle schema/agent.yml -o redoc/index.html
 
 deploy:
  provider: pages
