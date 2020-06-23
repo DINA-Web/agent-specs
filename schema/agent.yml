@@ -137,22 +137,22 @@ paths:
 components:
   schemas:
     Person:
-     type: object
-     required:
-       - data
-     properties:
-       data:
-         type: object
-         required:
-           - id
-         properties:
-           id:
-             type: string
-             format: uuid
-             example: d290f1ee-6c54-4b01-90e6-d701748f0851
-             description: Identifier of the object as UUID
-         allOf:
-          - $ref: '#/components/schemas/CommonPerson'
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: d290f1ee-6c54-4b01-90e6-d701748f0851
+              description: Identifier of the object as UUID
+          allOf:
+            - $ref: '#/components/schemas/CommonPerson'
 
     NewPerson:
       type: object
