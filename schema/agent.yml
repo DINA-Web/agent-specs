@@ -3,9 +3,9 @@ servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/AAFC/test/1.0.0
 info:
-  description: Person schema
+  description: Agent schema
   version: "1.0.0"
-  title: Person schema
+  title: Agent schema
   contact:
     email: you@your-company.com
   license:
