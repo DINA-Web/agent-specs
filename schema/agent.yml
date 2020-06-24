@@ -170,8 +170,8 @@ components:
         - type
         - attributes       
       properties:            
-        type: 
-          type: string
+        type:
+          enum: [person]      
           description: The type of data being returned.
         attributes:
           type: object
