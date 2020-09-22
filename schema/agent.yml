@@ -1,187 +1,23 @@
 openapi: 3.0.0
 servers:
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/AAFC/test/1.0.0
+  - description: DINA - AAFC
+    url: https://virtserver.dina-aafc.com/AAFC/1.0.0
 info:
-  description: Agent schema
+  description: Agent API Schema
   version: "1.0.0"
-  title: Agent schema
+  title: Agent Schema
   contact:
-    email: you@your-company.com
+    email: dina-aafc@canada.ca
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+   
 paths:
   /v1/person:
-    get:
-      summary: Get persons
-      operationId: getPersons
-      description: By passing in query string, user can get available persons authorised
-      parameters:
-        - in: query
-          name: filter[rsql]
-          description: pass an optional search string for looking up the persons
-          schema:
-            type: string
-        - in: query
-          name: sort
-          description: optional sort order string, such as descending, denoted by "-"
-          schema:
-            type: string
-        - in: query
-          name: page[offset]
-          description: number of records to skip when paging
-          schema:
-            type: integer
-            format: int32
-        - in: query
-          name: page[limit]
-          description: maximum number of records to return when paging
-          schema:
-            type: integer
-            format: int32
-            minimum: 0
-            maximum: 50
-      responses:
-        '200':
-          description: persons satifying the query restrictions
-          content:
-            application/vnd.api+json:
-              schema:
-                type: array
-                items: 
-                  $ref: '#/components/schemas/Person'                
-        '404':
-          description: person not found
-    post:
-      summary: Add person
-      operationId: addPerson
-      description: Adds a person
-      responses:
-        '201':
-          description: person created
-        '422':
-          description: Data integrity violation          
-      requestBody:
-        content:
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/NewPerson'
-        description: Person to add
+    $ref: 'person.yml#/paths/~1v1~1person'
   /v1/person/{Id}:
-    get:
-      summary: Find person by ID
-      description: Returns a single person
-      operationId: getPersonById
-      parameters:
-        - name: Id
-          in: path
-          description: ID of person to return
-          required: true
-          schema:
-            type: string
-            format: uuid            
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/vnd.api+json:
-              schema:          
-                $ref: '#/components/schemas/Person'
-        '400':
-          description: Not a valid uuid                
-        '404':
-          description: Person not found          
-    patch:
-      summary: Update person
-      operationId: updatePerson
-      description: update a person
-      parameters:
-        - name: Id
-          in: path
-          description: person id to patch
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: person updated
-        '400':
-          description: invalid input, object invalid
-      requestBody:
-        content:
-          application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Person'
-        description: person to add
-    delete:
-      summary: Delete person
-      operationId: deletePerson
-      description: delete a person
-      parameters:
-        - name: Id
-          in: path
-          description: person id to delete
-          required: true
-          schema:
-            type: string
-            format: uuid            
-      responses:
-        '200':
-          description: person marked as deleted
-        '400':
-          description: Not a valid uuid          
-        '404':
-          description: person not found       
-components:
-  schemas:
-    Person:
-      type: object
-      required:
-        - data
-      properties:
-        data:
-          type: object
-          required:
-            - id
-          properties:
-            id:
-              type: string
-              format: uuid
-              example: d290f1ee-6c54-4b01-90e6-d701748f0851
-              description: Identifier of the object as UUID
-          allOf:
-            - $ref: '#/components/schemas/CommonPerson'
-
-    NewPerson:
-      type: object
-      required:
-        - data
-      properties:
-        data:
-          type: object
-          allOf:
-            - $ref: '#/components/schemas/CommonPerson'
-
-    CommonPerson:
-      type: object
-      required:
-        - type
-        - attributes       
-      properties:            
-        type:
-          enum: [person]      
-          description: The type of data being returned.
-        attributes:
-          type: object
-          required:
-            - displayName
-            - email
-          properties:
-            displayName:
-              type: string
-              description: display name of the person
-            email:
-              description: person email
-              type: string          
+    $ref: 'person.yml#/paths/~1v1~1person~1{Id}'  
+  /v1/organization:
+    $ref: 'organization.yml#/paths/~1v1~1organization'    
+  /v1/organization/{Id}:
+    $ref: 'organization.yml#/paths/~1v1~1organization~1{Id}'

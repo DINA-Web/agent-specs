@@ -1,0 +1,190 @@
+openapi: 3.0.0
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/AAFC/test/1.0.0
+info:
+  description: Organization schema
+  version: "1.0.0"
+  title: Organization schema
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+paths:
+  /v1/organization:
+    get:
+      summary: Get Organizations
+      operationId: getOrganizations
+      description: By passing in query string, user can get available Organizations authorised
+      parameters:
+        - in: query
+          name: filter[rsql]
+          description: pass an optional search string for looking up the Organizations
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: optional sort order string, such as descending, denoted by "-"
+          schema:
+            type: string
+        - in: query
+          name: page[offset]
+          description: number of records to skip when paging
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: page[limit]
+          description: maximum number of records to return when paging
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: Organizations satifying the query restrictions
+          content:
+            application/vnd.api+json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Organization'                
+        '404':
+          description: organization not found
+    post:
+      summary: Add organization
+      operationId: addOrganization
+      description: Adds an organization
+      responses:
+        '201':
+          description: organization created
+        '422':
+          description: Data integrity violation          
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/NewOrganization'
+        description: Organization to add
+  /v1/organization/{Id}:
+    get:
+      summary: Find organization by ID
+      description: Returns a single organization
+      operationId: getOrganizationById
+      parameters:
+        - name: Id
+          in: path
+          description: ID of organization to return
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/vnd.api+json:
+              schema:          
+                $ref: '#/components/schemas/Organization'
+        '400':
+          description: Not a valid uuid                
+        '404':
+          description: Organization not found          
+    patch:
+      summary: Update organization
+      operationId: updateOrganization
+      description: update an organization
+      parameters:
+        - name: Id
+          in: path
+          description: organization id to patch
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: organization updated
+        '400':
+          description: invalid input, object invalid
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+        description: organization to add
+    delete:
+      summary: Delete organization
+      operationId: deleteOrganization
+      description: delete an organization
+      parameters:
+        - name: Id
+          in: path
+          description: organization id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        '200':
+          description: organization marked as deleted
+        '400':
+          description: Not a valid uuid          
+        '404':
+          description: organization not found       
+components:
+  schemas:
+    Organization:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: d290f1ee-6c54-4b01-90e6-d701748f0851
+              description: Identifier of the object as UUID
+          allOf:
+            - $ref: '#/components/schemas/CommonOrganization'
+
+    NewOrganization:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/CommonOrganization'
+
+    CommonOrganization:
+      type: object
+      required:
+        - type
+        - attributes       
+      properties:            
+        type:
+          enum: [organization]      
+          description: The type of data being returned.
+        attributes:
+          type: object
+          required:
+            - name
+            - aliases
+          properties:
+            name:
+              type: string
+              description: organization name
+            aliases:
+              description: organization aliases
+              type: array
+              items: 
+                type: string
+
