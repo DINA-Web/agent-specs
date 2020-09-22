@@ -8,4 +8,4 @@ Requirements/Specifications are recorded as [Issues](https://github.com/DINA-Web
 ## API Specifications
 
 * Rendered version: https://dina-web.github.io/agent-specs/
-* Open API 3 Schema: https://github.com/DINA-Web/agent-specs/blob/master/schema/agent.yaml
+* Open API 3 Schema: https://github.com/DINA-Web/agent-specs/blob/master/schema/agent.yml
