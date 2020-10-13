@@ -184,4 +184,10 @@ components:
               description: display name of the person
             email:
               description: person email
-              type: string          
+              type: string  
+            organizations:
+              description: the organization list the person belongs/associates to
+              type: array
+              items:
+                type: object
+                description: person's organization               
