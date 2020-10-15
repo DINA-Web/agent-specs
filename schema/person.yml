@@ -166,7 +166,6 @@ components:
 
     CommonPerson:
       type: object
-      addtionalProperties: true
       required:
         - type
         - attributes       
@@ -186,24 +185,28 @@ components:
             email:
               description: person email
               type: string  
-        relationships:      
-          organizations:
-            type: array
-            items:
-              type: object
-              required: 
-                - data
-              properties:
-                data:
-                  type: object
-                  required: 
-                    - type
-                    - id
-                  properties:
-                    type: 
-                      $ref: 'organization.yml#/components/schemas/Organization'
-                    id: 
-                      type: string
-                      format: uuid
-                      description: person's organization id
-                      example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        relationships:
+          type: object
+          required:
+            - organizations
+          properties:
+            organizations:
+              type: array
+              items:
+                type: object
+                required: 
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required: 
+                      - type
+                      - id
+                    properties:
+                      type:
+                        enum: [organization]
+                      id: 
+                        type: string
+                        format: uuid
+                        description: person's organization id
+                        example: d290f1ee-6c54-4b01-90e6-d701748f0851
