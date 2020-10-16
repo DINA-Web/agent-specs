@@ -184,4 +184,29 @@ components:
               description: display name of the person
             email:
               description: person email
-              type: string          
+              type: string  
+        relationships:
+          type: object
+          required:
+            - organizations
+          properties:
+            organizations:
+              type: array
+              items:
+                type: object
+                required: 
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required: 
+                      - type
+                      - id
+                    properties:
+                      type:
+                        enum: [organization]
+                      id: 
+                        type: string
+                        format: uuid
+                        description: person's organization id
+                        example: a600f9da-fcbe-4fef-9ae3-0f131ca05e0c
