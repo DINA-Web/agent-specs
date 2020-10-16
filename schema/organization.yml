@@ -176,12 +176,24 @@ components:
         attributes:
           type: object
           required:
-            - name
+            - names
             - aliases
           properties:
-            name:
-              type: string
-              description: organization name
+            names:
+              type: array
+              items:
+                type: object
+                required:
+                  - languageCode
+                  - name
+                properties:
+                  languageCode:
+                    type: string
+                    maxLength: 2
+                    example: FR
+                  name:
+                    type: string                    
+              description: organization name in both languages
             aliases:
               description: organization aliases
               type: array
