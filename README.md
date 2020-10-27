@@ -11,4 +11,4 @@ Requirements/Specifications are recorded as [Issues](https://github.com/DINA-Web
 * Open API 3 Schema: https://github.com/DINA-Web/agent-specs/blob/master/schema/agent.yml
 
 ## API Implementation
-https://github.com/AAFC-BICoE/agent-api
+AAFC-BICoE [agent-api](https://github.com/AAFC-BICoE/agent-api)
