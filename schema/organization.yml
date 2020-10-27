@@ -1,20 +1,7 @@
-openapi: 3.0.0
-servers:
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/AAFC/test/1.0.0
-info:
-  description: Organization schema
-  version: "1.0.0"
-  title: Organization schema
-  contact:
-    email: you@your-company.com
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 paths:
   /v1/organization:
     get:
-      summary: Get Organizations
+      summary: List organizations
       operationId: getOrganizations
       description: By passing in query string, user can get available Organizations authorised
       parameters:
@@ -54,9 +41,9 @@ paths:
         '404':
           description: organization not found
     post:
-      summary: Add organization
+      summary: Add an organization
       operationId: addOrganization
-      description: Adds an organization
+      description: Add an organization
       responses:
         '201':
           description: organization created
@@ -70,8 +57,8 @@ paths:
         description: Organization to add
   /v1/organization/{Id}:
     get:
-      summary: Find organization by ID
-      description: Returns a single organization
+      summary: Get an organization
+      description: Return a single organization
       operationId: getOrganizationById
       parameters:
         - name: Id
@@ -93,9 +80,9 @@ paths:
         '404':
           description: Organization not found          
     patch:
-      summary: Update organization
+      summary: Update an organization
       operationId: updateOrganization
-      description: update an organization
+      description: Update an organization
       parameters:
         - name: Id
           in: path
@@ -116,9 +103,9 @@ paths:
               $ref: '#/components/schemas/Organization'
         description: organization to add
     delete:
-      summary: Delete organization
+      summary: Delete an organization
       operationId: deleteOrganization
-      description: delete an organization
+      description: Delete an organization
       parameters:
         - name: Id
           in: path
