@@ -187,4 +187,12 @@ components:
               type: array
               items: 
                 type: string
+            createdBy:
+               type: string      
+               description: user who create the person record
+            createdOn:              
+               type: string
+               format: date-time                            
+               readOnly: true
+               description: date and time when the person is created, as defined in http://spec.openapis.org/oas/v3.0.3#bib-RFC3339
 
