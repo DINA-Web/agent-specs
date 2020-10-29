@@ -197,13 +197,4 @@ components:
               readOnly: true
               description: "date and time when the organization is created, as defined in http://spec.openapis.org/oas/v3.0.3#bib-RFC3339,
                 ISO-8601 format should be used as in: https://tools.ietf.org/html/rfc3339#section-5.6"
-              examples:
-                normal: 
-                  1985-04-12T23:20:50.52Z
-                with-timezone:
-                  1996-12-19T16:39:57-08:00
-                with-leap-second:
-                  1990-12-31T23:59:60Z
-                with-leap-second-and-timezone:
-                  1990-12-31T15:59:60-08:00
-
+              example: 1985-04-12T23:20:50.52Z
