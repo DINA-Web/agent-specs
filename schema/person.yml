@@ -170,8 +170,18 @@ components:
               type: string
               description: display name of the person
             email:
-              description: person email
               type: string  
+              description: person email
+            createdBy:
+              type: string      
+              readOnly: true
+              description: authenticated user who create the person record
+            createdOn:              
+              type: string
+              format: date-time                            
+              readOnly: true
+              description: "date and time when the person record was created in ISO format"
+              example:  1985-04-12T23:20:50.52Z
         relationships:
           type: object
           required:
