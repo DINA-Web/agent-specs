@@ -175,13 +175,12 @@ components:
             createdBy:
               type: string      
               readOnly: true
-              description: user who create the person record
+              description: authenticated user who create the person record
             createdOn:              
               type: string
               format: date-time                            
               readOnly: true
-              description: "date and time when the person is created, as defined in http://spec.openapis.org/oas/v3.0.3#bib-RFC3339,
-                ISO-8601 format should be used as in: https://tools.ietf.org/html/rfc3339#section-5.6" 
+              description: "date and time when the person record was created in ISO format"
               example:  1985-04-12T23:20:50.52Z
         relationships:
           type: object
