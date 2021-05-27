@@ -189,20 +189,20 @@ components:
           properties:
             organizations:
               type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      required: 
-                        - type
-                        - id
-                      properties:
-                        type:
-                          enum: [organization]
-                        id: 
-                          type: string
-                          format: uuid
-                          description: person's organization id
-                          example: a600f9da-fcbe-4fef-9ae3-0f131ca05e0c
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required: 
+                      - type
+                      - id
+                    properties:
+                      type:
+                        enum: [organization]
+                      id: 
+                        type: string
+                        format: uuid
+                        description: person's organization id
+                        example: a600f9da-fcbe-4fef-9ae3-0f131ca05e0c
 
