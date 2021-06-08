@@ -182,19 +182,26 @@ components:
               readOnly: true
               description: "date and time when the person record was created in ISO format"
               example:  1985-04-12T23:20:50.52Z
+            givenNames:
+              nullable: true
+              type: string
+              description: person's given names            
+            familyNames:
+              nullable: true                                                                          
+              type: string
+              description: person's family names
+
         relationships:
           type: object
           required:
             - organizations
           properties:
             organizations:
-              type: array
-              items:
-                type: object
-                required: 
-                  - data
-                properties:
-                  data:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
                     type: object
                     required: 
                       - type
@@ -207,3 +214,4 @@ components:
                         format: uuid
                         description: person's organization id
                         example: a600f9da-fcbe-4fef-9ae3-0f131ca05e0c
+
