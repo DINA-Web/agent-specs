@@ -185,7 +185,7 @@ components:
             givenNames:
               type: string
               description: person's given names            
-            familyNames:
+            familyNames:                                                                              
               type: string
               description: person's family names
 
