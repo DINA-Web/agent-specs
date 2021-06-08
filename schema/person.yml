@@ -183,9 +183,11 @@ components:
               description: "date and time when the person record was created in ISO format"
               example:  1985-04-12T23:20:50.52Z
             givenNames:
+              nullable: true
               type: string
               description: person's given names            
-            familyNames:                                                                              
+            familyNames:
+              nullable: true                                                                          
               type: string
               description: person's family names
 
