@@ -182,6 +182,13 @@ components:
               readOnly: true
               description: "date and time when the person record was created in ISO format"
               example:  1985-04-12T23:20:50.52Z
+            givenNames:
+              type: string
+              description: person's given names            
+            familyNames:
+              type: string
+              description: person's family names
+
         relationships:
           type: object
           required:
