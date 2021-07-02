@@ -190,6 +190,12 @@ components:
               nullable: true                                                                          
               type: string
               description: person's family names
+            aliases:
+              nullable: true
+              description: given aliases for a person
+              type: array
+              items:
+                type: string
 
         relationships:
           type: object
