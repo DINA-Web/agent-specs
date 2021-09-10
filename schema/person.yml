@@ -196,6 +196,20 @@ components:
               type: array
               items:
                 type: string
+            identifiers:
+              type: object
+              nullable: true
+              properties:
+                identifiers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        enum: [ORCID, WIKIDATA]
+                      uri:
+                        type: string
+                        format: uri
 
         relationships:
           type: object
