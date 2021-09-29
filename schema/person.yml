@@ -190,6 +190,14 @@ components:
               nullable: true                                                                          
               type: string
               description: person's family names
+            webpage:
+              nullable: true
+              type: uri
+              description: person's webpage          
+            remarks:
+              nullable: true                                                                          
+              type: string
+              description: remark of the person
             aliases:
               nullable: true
               description: given aliases for a person
