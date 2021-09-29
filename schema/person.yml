@@ -193,6 +193,7 @@ components:
             webpage:
               nullable: true
               type: string
+              format: uri
               description: person's webpage          
             remarks:
               nullable: true                                                                          
