@@ -192,7 +192,7 @@ components:
               description: person's family names
             webpage:
               nullable: true
-              type: uri
+              type: string
               description: person's webpage          
             remarks:
               nullable: true                                                                          
