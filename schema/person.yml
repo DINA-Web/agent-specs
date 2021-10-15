@@ -1,6 +1,8 @@
 paths:
   /v1/person:
     get:
+      tags:
+        - Person
       summary: List persons
       operationId: getPersons
       description: By passing in query string, user can get available persons authorised
@@ -41,6 +43,8 @@ paths:
         '404':
           description: person not found
     post:
+      tags:
+        - Person
       summary: Add a person
       operationId: addPerson
       description: Add a person
@@ -57,6 +61,8 @@ paths:
         description: Person to add
   /v1/person/{Id}:
     get:
+      tags:
+        - Person
       summary: Get a person
       description: Return a single person
       operationId: getPersonById
@@ -80,6 +86,8 @@ paths:
         '404':
           description: Person not found          
     patch:
+      tags:
+        - Person
       summary: Update a person
       operationId: updatePerson
       description: Update a person
@@ -103,6 +111,8 @@ paths:
               $ref: '#/components/schemas/Person'
         description: person to add
     delete:
+      tags:
+        - Person
       summary: Delete a person
       operationId: deletePerson
       description: Delete a person
