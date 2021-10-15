@@ -169,42 +169,51 @@ components:
             displayName:
               type: string
               description: display name of the person
+              example: test user
             email:
               type: string  
+              format: email
               description: person email
+              example: test@canada.ca
             createdBy:
               type: string      
               readOnly: true
               description: authenticated user who create the person record
+              example: test user
             createdOn:              
               type: string
               format: date-time                            
               readOnly: true
               description: "date and time when the person record was created in ISO format"
-              example:  1985-04-12T23:20:50.52Z
+              example:  "1985-04-12T23:20:50.52Z"
             givenNames:
               nullable: true
               type: string
-              description: person's given names            
+              description: person's given names   
+              example: Jane           
             familyNames:
               nullable: true                                                                          
               type: string
               description: person's family names
+              example: Doe
             webpage:
               nullable: true
               type: string
               format: uri
-              description: person's webpage          
+              description: person's webpage        
+              example: https://github.com/DINA-Web   
             remarks:
               nullable: true                                                                          
               type: string
               description: remark of the person
+              example: this is a mock remark
             aliases:
               nullable: true
               description: given aliases for a person
               type: array
               items:
                 type: string
+              example: ["Jane Roe","Janie Doe"]
             identifiers:
               type: array
               nullable: true
@@ -216,6 +225,11 @@ components:
                   uri:
                     type: string
                     format: uri
+              example:
+                - type: WIKIDATA
+                  uri: https://www.wikidata.org/wiki/Q51044
+                - type: WIKIDATA
+                  uri: https://www.wikidata.org/wiki/Q2013
 
         relationships:
           type: object
