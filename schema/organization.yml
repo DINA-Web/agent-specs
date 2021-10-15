@@ -182,18 +182,25 @@ components:
                   name:
                     type: string                    
               description: organization name in all available languages
+              example:
+                - languageCode: EN
+                  name: World Wide Fund for Nature
+                - languageCode: FR
+                  name: Fonds mondial pour la nature
             aliases:
               description: organization aliases
               type: array
               items: 
                 type: string
+              example: ["WWF","World Wide Fund for Nature"]
             createdBy:
               type: string      
               readOnly: true
               description: authenticated user who create the organization record
+              example: test user
             createdOn:              
               type: string
               format: date-time                            
               readOnly: true
               description: "date and time when the organization record was created in ISO format"
-              example: 1985-04-12T23:20:50.52Z
+              example: "1985-04-12T23:20:50.52Z"
