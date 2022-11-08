@@ -224,23 +224,6 @@ components:
               items:
                 type: string
               example: ["Jane Roe","Janie Doe"]
-            identifiers:
-              type: array
-              nullable: true
-              items:
-                type: object
-                properties:
-                  type:
-                    enum: [ORCID, WIKIDATA]
-                  uri:
-                    type: string
-                    format: uri
-              example:
-                - type: WIKIDATA
-                  uri: https://www.wikidata.org/wiki/Q51044
-                - type: WIKIDATA
-                  uri: https://www.wikidata.org/wiki/Q2013
-
         relationships:
           type: object
           required:
@@ -263,5 +246,23 @@ components:
                         type: string
                         format: uuid
                         description: person's organization id
+                        example: a600f9da-fcbe-4fef-9ae3-0f131ca05e0c
+            identifiers:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required: 
+                      - type
+                      - id
+                    properties:
+                      type:
+                        enum: [identifier]
+                      id: 
+                        type: string
+                        format: uuid
+                        description: person's identifier id
                         example: a600f9da-fcbe-4fef-9ae3-0f131ca05e0c
 
