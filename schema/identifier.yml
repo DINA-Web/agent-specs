@@ -183,7 +183,7 @@ components:
             value:
               type: string  
               description: value of the identifier in the namespace
-              example: https://www.wikidata.org/wiki/Q51044
+              example: http://www.wikidata.org/entity/Q51044
             createdBy:
               type: string      
               readOnly: true
